@@ -16,22 +16,19 @@
 
 </head>
 <body>
-
   <div class=header>
   <h1>SaaS Tool Radar</h1>
 <input type="file" onchange="parsecsv()" accept=".csv" id="file" />
 <label for="file" class="btn">Load .csv</label>
+<p><a href="http://vrklgn.github.io/example.csv" download="example.csv">Download Example CSV</a></p>
 </div>
 
 <div class=radar-container>
-<p>
-<div class=svg-container>
-<svg id="radar"></svg>
-</div>
-</p>
+  <div id="container" class="svg-container">
+  <svg id="radar"></svg>
+  </div>
 </div>
 <div class=radar-container>
-<p>
 <div class=grid-container>
   <div class=grid-column>
     <h2>Invest</h2>
@@ -50,7 +47,6 @@
     <p>Tools we want to move away from. We rather avoid new projects being started in the tool and want to limit the usage over time to finally decommission the product entirely.</p>
   </div>
 </div>
-</p>
 </div>
 
 <script>
@@ -69,7 +65,7 @@ radar_visualization(
 function parsecsv(){
   var x = document.getElementById("file");
   Papa.parse(x.files[0],
-      {header: true, dynamicTyping: true, skipEmptyLines: true, complete: function(results)
+      {header: true, dynamicTyping: true, skipEmptyLines: true, comments: true, complete: function(results)
       {
           radar_visualization(results.data)
 
